@@ -70,15 +70,22 @@ int Element_FOAM::update(UPDATE_FUNC_ARGS)
 		sim->air->bmap_blockairh[y/CELL][x/CELL] = 1;
 	}
 	
-	if (sim->pv[y/CELL][x/CELL]>1.0f)
+	if (sim->pv[y/CELL][x/CELL]> 1.0f)
 	{
 		tmp += 5;
-		sim->pv[y/CELL][x/CELL] = 0.0f;
-		parts[i].tmp = tmp;
+		for (rx=-1; rx<2; rx++) 
+		{
+			for (ry=-1; ry<2; ry++) 
+			{
+		        sim->pv[(y+ry)/CELL][(x+rx)/CELL] = 0.0f;
+				parts[i].tmp = tmp;
+			}
+		}
 	}
 	
 	if (!parts[i].life && (tmp > 2700) && (rand()%(tmp-3000)))
 		parts[i].life = 5;
+		
 	if (parts[i].life)
 	{
 		float advection = 0.1f;

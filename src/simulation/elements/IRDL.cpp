@@ -42,15 +42,8 @@ Element_IRDL::Element_IRDL()
 	HighTemperature = ITH;
 	HighTemperatureTransition = NT;
 	
-	Update = &Element_IRDL::update;
+	Update = NULL;
 	
 }
-
-//#TPT-Directive ElementHeader Element_IRDL static int update(UPDATE_FUNC_ARGS)
-int Element_IRDL::update(UPDATE_FUNC_ARGS)
-{
-	return 0;
-}
-
 
 Element_IRDL::~Element_IRDL() {}

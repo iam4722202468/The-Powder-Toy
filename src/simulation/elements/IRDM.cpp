@@ -59,7 +59,7 @@ int Element_IRDM::update(UPDATE_FUNC_ARGS)
 				{
 				case PT_LAVA:
 					if (!(rand()%67) && (parts[pmap[y+ry][x+rx]>>8].ctype == PT_SALT))
-						goto succ;
+						sim->delete_part(x, y);
 					break;
 				default:
 					break;
@@ -70,9 +70,6 @@ int Element_IRDM::update(UPDATE_FUNC_ARGS)
 		if ((sim->pv[y/CELL][x/CELL] > 4.3f))
 			sim->create_part(i, x, y, PT_IRDP);
 	}
-	return 0;
-succ:
-	sim->delete_part(x, y);
 	return 0;
 }
 
