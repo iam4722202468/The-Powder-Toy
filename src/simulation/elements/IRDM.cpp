@@ -31,7 +31,7 @@ Element_IRDM::Element_IRDM()
 	Description = "A very hard, brittle, and dense metal.";
 	
 	State = ST_SOLID;
-	Properties = TYPE_SOLID|PROP_CONDUCTS|PROP_LIFE_DEC|PROP_HOT_GLOW;
+	Properties = TYPE_SOLID|PROP_CONDUCTS|PROP_HOT_GLOW;
 	
 	LowPressure = IPL;
 	LowPressureTransition = NT;
