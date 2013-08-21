@@ -158,10 +158,16 @@ int Element_SPRK::update(UPDATE_FUNC_ARGS)
 					}
 				}
 		break;
+		
 	case PT_TUNG:
-		if(parts[i].temp < 3595.0){
+		if(parts[i].temp < 3595.0)
 			parts[i].temp += (rand()%20)-4;
-		}
+		break;
+		
+	case PT_IRDL:
+	        sim->create_part(-1, x + rand()%3-1, y + rand()%3-1, PT_FIRE);
+	    break;
+	    
 	default:
 		break;
 	}

@@ -31,7 +31,7 @@ Element_IRDP::Element_IRDP()
 	Description = "Iridium powder.";
 	
 	State = ST_SOLID;
-	Properties = TYPE_PART|PROP_LIFE_DEC|PROP_NEUTPASS;
+	Properties = TYPE_PART|PROP_CONDUCTS;
 	
 	LowPressure = IPL;
 	LowPressureTransition = NT;
