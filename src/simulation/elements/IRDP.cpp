@@ -59,7 +59,7 @@ int Element_IRDP::update(UPDATE_FUNC_ARGS)
 				{
 				case PT_SALT:
 					if (!(parts[i].life) && !(rand()%47))
-						goto succ;
+						sim->delete_part(x, y);
 					break;
 				case PT_FIRE:
 				    if (!(rand()%20))
@@ -73,9 +73,6 @@ int Element_IRDP::update(UPDATE_FUNC_ARGS)
 					break;
 				}
 			}
-	return 0;
-succ:
-	sim->delete_part(x, y);
 	return 0;
 }
 
