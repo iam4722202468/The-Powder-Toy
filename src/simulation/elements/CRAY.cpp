@@ -6,7 +6,7 @@ Element_CRAY::Element_CRAY()
 	Name = "CRAY";
 	Colour = PIXPACK(0xBBFF00);
 	MenuVisible = 1;
-	MenuSection = SC_ELEC;
+	MenuSection = SC_ADVELEC;
 	Enabled = 1;
 	
 	Advection = 0.0f;

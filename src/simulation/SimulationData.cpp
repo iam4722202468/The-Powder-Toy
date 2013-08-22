@@ -143,6 +143,7 @@ menu_section * LoadMenus(int & menuCount)
 	{
 		{"\xC1", "Walls", 0, 1},
 		{"\xC2", "Electronics", 0, 1},
+		{"\xE8", "Advanced Electronics", 0, 1},
 		{"\xD6", "Powered Materials", 0, 1},
 		{"\x99", "Sensors", 0, 1},
 		{"\xE2", "Force", 0, 1},
