@@ -53,7 +53,7 @@ int Element_NOT::update(UPDATE_FUNC_ARGS)
 	int r, rx, ry;
 	bool sprkcunt = false;
 	if (!parts[i].tmp)
-		parts[i].tmp = 5;
+		parts[i].tmp = 6;
 	for (rx=-2; rx<3; rx++)
 		for (ry=-2; ry<3; ry++)
 			if (BOUNDS_CHECK && (rx || ry))

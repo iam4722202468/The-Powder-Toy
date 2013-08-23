@@ -51,7 +51,7 @@ int Element_OR::update(UPDATE_FUNC_ARGS)
 {
 	int r, rx, ry;
 	if (!parts[i].tmp)
-		parts[i].tmp = 5;
+		parts[i].tmp = 6;
 	for (rx=-2; rx<3; rx++)
 		for (ry=-2; ry<3; ry++)
 			if (BOUNDS_CHECK && (rx || ry))
