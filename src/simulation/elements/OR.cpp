@@ -4,9 +4,9 @@ Element_OR::Element_OR()
 {
 	Identifier = "DEFAULT_PT_OR";
 	Name = "OR";
-	Colour = PIXPACK(0x707070);
+	Colour = PIXPACK(0x009456);
 	MenuVisible = 1;
-	MenuSection = SC_SOLIDS;
+	MenuSection = SC_ADVELEC;
 	Enabled = 1;
 	
 	Advection = 0.0f;
@@ -28,10 +28,10 @@ Element_OR::Element_OR()
 	
 	Temperature = R_TEMP+0.0f +273.15f;
 	HeatConduct = 251;
-	Description = "Rusts with salt, can be used for electrolysis of WATR.";
+	Description = "Logical OR gate.  Use tmp to set delay. In: PSCN, Out: NSCN";
 	
 	State = ST_SOLID;
-	Properties = TYPE_SOLID|PROP_CONDUCTS|PROP_LIFE_DEC|PROP_HOT_GLOW;
+	Properties = TYPE_SOLID;
 	
 	LowPressure = IPL;
 	LowPressureTransition = NT;
@@ -49,40 +49,33 @@ Element_OR::Element_OR()
 //#TPT-Directive ElementHeader Element_OR static int update(UPDATE_FUNC_ARGS)
 int Element_OR::update(UPDATE_FUNC_ARGS)
 {
-	int r, rx, ry, rt;
-	for (rx=-1; rx<2; rx++)
-		for (ry=-1; ry<2; ry++)
+	int r, rx, ry;
+	if (!parts[i].tmp)
+		parts[i].tmp = 5;
+	for (rx=-2; rx<3; rx++)
+		for (ry=-2; ry<3; ry++)
 			if (BOUNDS_CHECK && (rx || ry))
 			{
 				r = pmap[y+ry][x+rx];
-				switch (r&0xFF)
-				{
-				case PT_SALT:
-					if (!(parts[i].life) && !(rand()%47))
-						goto succ;
-					break;
-				case PT_SLTW:
-					if (!(parts[i].life) && !(rand()%67))
-						goto succ;
-					break;
-				case PT_WATR:
-					if (!(parts[i].life) && !(rand()%1200))
-						goto succ;
-					break;
-				case PT_O2:
-					if (!(parts[i].life) && !(rand()%250))
-						goto succ;
-					break;
-				case PT_LO2:
-					goto succ;
-				default:
-					break;
-				}
+				if ((r&0xFF)==PT_SPRK)
+				    if (parts[r>>8].ctype == PT_PSCN)
+						goto output;
 			}
 	return 0;
-succ:
-	sim->part_change_type(i,x,y,PT_BMTL);
-	parts[i].tmp=(rand()%10)+20;				
+	
+	output:
+		for (rx=-2; rx<3; rx++)
+			for (ry=-2; ry<3; ry++)
+				if (BOUNDS_CHECK && (rx || ry))
+				{
+					r = pmap[y+ry][x+rx];
+					if ((r&0xFF)==PT_NSCN && !parts[r>>8].life)
+					{
+						parts[r>>8].type = PT_SPRK;
+						parts[r>>8].ctype = PT_NSCN;
+						parts[r>>8].life = parts[i].tmp;
+					}
+				}						
 	return 0;
 }
 
