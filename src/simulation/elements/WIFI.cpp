@@ -6,7 +6,7 @@ Element_WIFI::Element_WIFI()
 	Name = "WIFI";
 	Colour = PIXPACK(0x40A060);
 	MenuVisible = 1;
-	MenuSection = SC_ELEC;
+	MenuSection = SC_ADVELEC;
 	Enabled = 1;
 	
 	Advection = 0.0f;
