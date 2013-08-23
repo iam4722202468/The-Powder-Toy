@@ -1,9 +1,9 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_AND PT_AND 178
-Element_AND::Element_AND()
+//#TPT-Directive ElementClass Element_NOR PT_NOR 182
+Element_NOR::Element_NOR()
 {
-	Identifier = "DEFAULT_PT_AND";
-	Name = "AND";
+	Identifier = "DEFAULT_PT_NOR";
+	Name = "NOR";
 	Colour = PIXPACK(0x009456);
 	MenuVisible = 1;
 	MenuSection = SC_ADVELEC;
@@ -28,7 +28,7 @@ Element_AND::Element_AND()
 	
 	Temperature = R_TEMP+0.0f +273.15f;
 	HeatConduct = 251;
-	Description = "Logical AND gate.  Use tmp to set delay. In: PSCN, Out: NSCN";
+	Description = "Logical NOR gate.  Use tmp to set delay. In: PSCN, Out: NSCN";
 	
 	State = ST_SOLID;
 	Properties = TYPE_SOLID;
@@ -42,17 +42,19 @@ Element_AND::Element_AND()
 	HighTemperature = 1687.0f;
 	HighTemperatureTransition = PT_LAVA;
 	
-	Update = &Element_AND::update;
+	Update = &Element_NOR::update;
 	
 }
 
-//#TPT-Directive ElementHeader Element_AND static int update(UPDATE_FUNC_ARGS)
-int Element_AND::update(UPDATE_FUNC_ARGS)
+//#TPT-Directive ElementHeader Element_NOR static int update(UPDATE_FUNC_ARGS)
+int Element_NOR::update(UPDATE_FUNC_ARGS)
+
 {
-	int r, rx, ry;
+	int r, rx, ry, nscnpos;
 	bool sprkcunt = false;
 	if (!parts[i].tmp)
 		parts[i].tmp = 6;
+		
 	for (rx=-2; rx<3; rx++)
 		for (ry=-2; ry<3; ry++)
 			if (BOUNDS_CHECK && (rx || ry))
@@ -60,13 +62,19 @@ int Element_AND::update(UPDATE_FUNC_ARGS)
 				r = pmap[y+ry][x+rx];
 				if ((r&0xFF)==PT_SPRK)
 				    if (parts[r>>8].ctype == PT_PSCN)
-				    {
-				        if (sprkcunt)
-							goto output;
-				        else
-							sprkcunt = true;
-				    }
+						goto output;
+				    
+				if ((r&0xFF)==PT_NSCN)
+					nscnpos = r;
 			}
+			
+	r = nscnpos;	
+	if ((r&0xFF)==PT_NSCN && !parts[r>>8].life)
+	{
+		parts[r>>8].type = PT_SPRK;
+		parts[r>>8].ctype = PT_NSCN;
+		parts[r>>8].life = parts[i].tmp;
+	}
 
 	return 0;
 	
@@ -76,15 +84,14 @@ int Element_AND::update(UPDATE_FUNC_ARGS)
 				if (BOUNDS_CHECK && (rx || ry))
 				{
 					r = pmap[y+ry][x+rx];
-					if ((r&0xFF)==PT_NSCN && !parts[r>>8].life)
+					if ( (r&0xFF)==PT_NSCN && !parts[r>>8].life || (((r&0xFF)==PT_SPRK) && (parts[r>>8].ctype == PT_NSCN)))
 					{
-						parts[r>>8].type = PT_SPRK;
-						parts[r>>8].ctype = PT_NSCN;
-						parts[r>>8].life = parts[i].tmp;
+						parts[r>>8].type = PT_NSCN;
+						parts[r>>8].life = 8;
 					}
 				}						
 	return 0;
 }
 
 
-Element_AND::~Element_AND() {}
+Element_NOR::~Element_NOR() {}
