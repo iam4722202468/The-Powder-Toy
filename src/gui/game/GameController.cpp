@@ -571,19 +571,13 @@ bool GameController::MouseUp(int x, int y, unsigned button)
 				(*iter).pos((*iter).getText(sim), signx, signy, signw, signh);
 				if (x>=signx && x<=signx+signw && y>=signy && y<=signy+signh)
 				{
-					if (sregexp((*iter).text.c_str(), "^{[c|t]:[0-9]*|.*}$")==0)
+					const char* str=(*iter).text.c_str();
+					int pos=splitsign(str);
+					if (pos)
 					{
-						const char * signText = (*iter).text.c_str();
 						char buff[256];
-						int sldr;
-
-						memset(buff, 0, sizeof(buff));
-
-						for (sldr=3; signText[sldr] != '|'; sldr++)
-							buff[sldr-3] = signText[sldr];
-
-						buff[sldr-3] = '\0';
-
+						strcpy(buff, str+3);
+						buff[pos]=0;
 						int tempSaveID = format::StringToNumber<int>(std::string(buff));
 						if (tempSaveID)
 						{
