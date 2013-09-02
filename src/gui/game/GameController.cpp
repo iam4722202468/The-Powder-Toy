@@ -1,4 +1,3 @@
-
 #include <iostream>
 #include <queue>
 #include "Config.h"
@@ -581,9 +580,9 @@ bool GameController::MouseUp(int x, int y, unsigned button)
 						int tempSaveID = format::StringToNumber<int>(std::string(buff));
 						if (tempSaveID)
 						{
-							if ((*iter).text.c_str()[1] == 'c')
+							if (str[1] == 'c')
 								OpenSavePreview(tempSaveID, 0, false);
-							else if ((*iter).text.c_str()[1] == 't')
+							else if (str[1] == 't')
 							{
 								char url[256];
 								sprintf(url, "http://powdertoy.co.uk/Discussions/Thread/View.html?Thread=%i", tempSaveID);
@@ -750,7 +749,7 @@ void GameController::ResetSpark()
 			if (sim->parts[i].ctype >= 0 && sim->parts[i].ctype < PT_NUM && sim->elements[sim->parts[i].ctype].Enabled)
 			{
 				sim->parts[i].type = sim->parts[i].ctype;
-				sim->parts[i].life = 0;
+				sim->parts[i].ctype = sim->parts[i].life = 0;
 			}
 			else
 				sim->kill_part(i);
