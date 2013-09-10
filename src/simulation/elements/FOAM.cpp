@@ -1,6 +1,6 @@
 #include "simulation/Elements.h"
 #include "simulation/Air.h"
-//#TPT-Directive ElementClass Element_FOAM PT_FOAM 176
+//#TPT-Directive ElementClass Element_FOAM PT_FOAM 177
 Element_FOAM::Element_FOAM()
 {
 	Identifier = "DEFAULT_PT_FOAM";

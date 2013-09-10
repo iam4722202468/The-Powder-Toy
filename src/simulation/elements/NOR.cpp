@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_NOR PT_NOR 182
+//#TPT-Directive ElementClass Element_NOR PT_NOR 183
 Element_NOR::Element_NOR()
 {
 	Identifier = "DEFAULT_PT_NOR";

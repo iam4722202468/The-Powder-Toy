@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_NAND PT_NAND 181
+//#TPT-Directive ElementClass Element_NAND PT_NAND 182
 Element_NAND::Element_NAND()
 {
 	Identifier = "DEFAULT_PT_NAND";
