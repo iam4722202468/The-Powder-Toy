@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_XOR PT_XOR 184
+//#TPT-Directive ElementClass Element_XOR PT_XOR 187
 Element_XOR::Element_XOR()
 {
 	Identifier = "DEFAULT_PT_XOR";

@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_NOT PT_NOT 180
+//#TPT-Directive ElementClass Element_NOT PT_NOT 183
 Element_NOT::Element_NOT()
 {
     Identifier = "DEFAULT_PT_NOT";

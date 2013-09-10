@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_AND PT_AND 179
+//#TPT-Directive ElementClass Element_AND PT_AND 182
 Element_AND::Element_AND()
 {
 	Identifier = "DEFAULT_PT_AND";

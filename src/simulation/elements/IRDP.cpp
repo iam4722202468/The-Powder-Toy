@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_IRDP PT_IRDP 176
+//#TPT-Directive ElementClass Element_IRDP PT_IRDP 179
 Element_IRDP::Element_IRDP()
 {
 	Identifier = "DEFAULT_PT_IRDP";

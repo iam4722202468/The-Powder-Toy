@@ -1,5 +1,5 @@
 #include "simulation/Elements.h"
-//#TPT-Directive ElementClass Element_XNOR PT_XNOR 185
+//#TPT-Directive ElementClass Element_XNOR PT_XNOR 188
 Element_XNOR::Element_XNOR()
 {
 	Identifier = "DEFAULT_PT_XNOR";
