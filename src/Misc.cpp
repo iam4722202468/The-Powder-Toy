@@ -625,7 +625,7 @@ void membwand(void * destv, void * srcv, size_t destsize, size_t srcsize)
 int splitsign(const char* str)
 {
 	int match=0,r;
-	if (str[0]=='{' && (str[1]=='c' || str[1]=='t') && str[2]==':' && str[3]>='0' && str[3]<='9')
+	if (str[0]=='{' && (str[1]=='c' || str[1]=='t' || str[1]=='y') && str[2]==':')
 	{
 		const char* p=str+4;
 		while (*p>='0' && *p<='9')

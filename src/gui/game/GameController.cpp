@@ -588,6 +588,12 @@ bool GameController::MouseUp(int x, int y, unsigned button)
 								sprintf(url, "http://powdertoy.co.uk/Discussions/Thread/View.html?Thread=%i", tempSaveID);
 								OpenURI(url);
 							}
+							else if (str[1] == 'y')
+							{
+								char url[256];
+								sprintf(url, "www.youtube.com/watch?v=%i", tempSaveID);
+								OpenURI(url);
+							}
 						}
 						break;
 					}

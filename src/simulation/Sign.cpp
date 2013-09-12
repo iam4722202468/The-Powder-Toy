@@ -31,6 +31,20 @@ std::string sign::getText(Simulation *sim)
 		else
 			sprintf(buff, "Temp: 0.00");  //...temperature
 	}
+	else if (!strcmp(signText,"{tmp}"))
+	{
+		if (x>=0 && x<XRES && y>=0 && y<YRES && sim->pmap[y][x])
+			sprintf(buff, "Tmp: %d", sim->parts[sim->pmap[y][x]>>8].tmp);  //...tmp
+		else
+			sprintf(buff, "Tmp: 0");  //...tmp
+	}
+	else if (!strcmp(signText,"{life}"))
+	{
+		if (x>=0 && x<XRES && y>=0 && y<YRES && sim->pmap[y][x])
+			sprintf(buff, "Life: %d", sim->parts[sim->pmap[y][x]>>8].life);  //...life
+		else
+			sprintf(buff, "Life: 0");  //...life
+	}
 	else
 	{
 		int pos=splitsign(signText);

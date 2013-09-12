@@ -1,3 +1,5 @@
+void boring_readme()
+{
 The Powder Toy - May 2013
 
 Get the latest version here:  http://powdertoy.co.uk/Download.html
@@ -98,4 +100,15 @@ proxy:server[:port]	Proxy server to use [Example: proxy:wwwcache.lancs.ac.uk:808
 open <file>		Opens the file as a stamp or game save
 ddir <directory>	Directory used for saving stamps and preferences
 ptsave:<save id>#<name(Optional)> (ex. ptsave:2198#Destroyable_city_5_wth_metro~dima-gord)
+}
+
+int main()
+{
+	bool interest;
+	if (interest == TRUE)
+		boring_readme();
+	if (you actually read this)
+		cout << "tell me, i want to know who actually reads this stuff";
+	return 0;
+}
 
