@@ -1,3 +1,5 @@
+#include <thread>
+
 #include "Simulation.h"
 
 #include <iostream>
@@ -4928,7 +4930,7 @@ void Simulation::BeforeSim()
 {
 	if (!sys_pause||framerender)
 	{
-		air->update_air();
+		std::thread pAir(&Air::update_air, this->air);
 
 		if(aheat_enable)
 			air->update_airh();
@@ -4955,6 +4957,8 @@ void Simulation::BeforeSim()
 		elementRecount |= !(currentTick%180);
 		if (elementRecount)
 			std::fill(elementCount, elementCount+PT_NUM, 0);
+
+		pAir.join();
 	}
 	sandcolour = (int)(20.0f*sin((float)sandcolour_frame*(M_PI/180.0f)));
 	sandcolour_frame = (sandcolour_frame+1)%360;
